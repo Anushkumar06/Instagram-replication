@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Capture</title>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Capture or Upload Photo</h1>
+        <div class="controls">
+            <button id="start-webcam" class="btn">Start Webcam</button>
+            <input type="file" id="upload-file" accept="image/*" class="btn">
+        </div>
+        <div class="preview">
+            <video id="webcam" autoplay></video>
+            <canvas id="canvas"></canvas>
+            <img id="uploaded-image" src="" alt="Uploaded Image" style="display: none;">
+        </div>
+        <button id="capture-button" class="btn">Capture Photo</button>
+    </div>
+
+    <!-- Modal for displaying captured image -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Captured Image</h2>
+            <img id="modal-image" src="" alt="Captured Image" style="width: 100%; max-width: 600px;">
+            <div class="modal-buttons">
+                <button id="use-button" class="btn">Use this Image</button>
+                <button id="retry-button" class="btn">Capture Another</button>
+                <button id="apply-filter-capture" class="btn">Apply Filter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for file upload validation -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-upload-button">&times;</span>
+            <h2>Upload Confirmation</h2>
+            <img id="upload-modal-image" src="" alt="Uploaded Image Preview" style="width: 100%; max-width: 600px; display: none;">
+            <p id="upload-status">Image is being uploaded.....</p>
+            <div class="modal-buttons">
+                <button id="confirm-upload" class="btn" style="display: none;">Confirm</button>
+                <button id="retry-upload" class="btn">Retry</button>
+                <button id="apply-filter-upload" class="btn">Apply Filter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for filter preview and upload -->
+    <div id="filter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-filter-button">&times;</span>
+            <h2>Apply Filters</h2>
+            <img id="filter-preview-image" src="" alt="Filter Preview" style="width: 100%; max-width: 600px;">
+            <div class="filter-controls">
+                <label for="grayscale">Grayscale:</label>
+                <input type="range" id="grayscale" min="0" max="100" value="0">
+                <label for="blur">Blur:</label>
+                <input type="range" id="blur" min="0" max="20" value="0">
+                <label for="contrast">Contrast:</label>
+                <input type="range" id="contrast" min="0" max="200" value="100">
+                <label for="brightness">Brightness:</label>
+                <input type="range" id="brightness" min="0" max="200" value="100">
+            </div>
+            <div class="modal-buttons">
+                <button id="upload-image" class="btn">Save Filtered Image</button>
+                <button id="discard-filtered-image" class="btn">Discard Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h2>Image Uploaded Successfully!</h2>
+            <img src="tick-icon.png" alt="Success" style="width: 100px; height: 100px;">
+            <div class="modal-buttons">
+                <button id="close-success-button" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cmra.js"></script>
+</body>
+</html>

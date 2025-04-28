@@ -1,0 +1,274 @@
+<link rel="icon" href="logo1.png" type="image/x-icon">
+<style>
+        
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; 
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    max-width: 350px;
+    background: #1e1e1e;
+    background: linear-gradient(0deg, #2c2c2c 0%, #1e1e1e 100%); 
+    border-radius: 40px;
+    padding: 25px 35px;
+    border: 5px solid #3a3a3a; 
+    box-shadow: rgba(255, 215, 0, 0.5) 0px 30px 30px -20px; 
+    margin: 20px;
+  }
+  
+  .heading {
+    text-align: center;
+    font-weight: 900;
+    font-size: 30px;
+    color: #ffd700; 
+  }
+  
+  .form {
+    margin-top: 20px;
+  }
+  
+  .form .input {
+    width: 100%;
+    background: #2c2c2c; 
+    border: none;
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    box-shadow: rgba(255, 215, 0, 0.3) 0px 10px 10px -5px; 
+    border-inline: 2px solid transparent;
+  }
+  
+  .form .input::-moz-placeholder {
+    color: rgb(170, 170, 170);
+  }
+  
+  .form .input::placeholder {
+    color: rgb(170, 170, 170);
+  }
+  
+  .form .input:focus {
+    outline: none;
+    border-inline: 2px solid #ffd700; 
+  }
+  
+  .form .forgot-password {
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  .form .forgot-password a {
+    font-size: 20px;
+    color: #ffd700; 
+    text-decoration: none;
+  }
+  
+  .form .login-button {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ffd700 0%, #ffcc00 100%); 
+    color: #121212; 
+    padding-block: 15px;
+    margin: 20px auto;
+    border-radius: 20px;
+    border: none;
+    box-shadow: rgba(255, 215, 0, 0.4) 0px 20px 10px -15px; 
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .form .login-button:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(255, 215, 0, 0.6) 0px 23px 10px -20px; 
+  }
+  
+  .form .login-button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(255, 215, 0, 0.6) 0px 15px 10px -10px; 
+  }
+  
+  .social-account-container {
+    margin-top: 25px;
+  }
+  
+  .social-account-container .title {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: rgb(170, 170, 170);
+  }
+  
+  .social-account-container .social-accounts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+  }
+  
+  .social-account-container .social-accounts .social-button {
+    background: linear-gradient(45deg, rgb(210, 180, 140) 0%, rgb(139, 69, 19) 100%); 
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    box-shadow: rgba(255, 215, 0, 0.3) 0px 12px 10px -8px; 
+  }
+  
+    </style>
+    
+    <center>
+    
+    <div class="container">
+      <header>
+        <div class="heading">Sign In</div>
+      </header>
+      <main>
+        <form id="authForm" class="form">
+          <input required class="input" type="text" name="username" id="username" placeholder="Username">
+          
+          <input required class="input" type="email" name="email" id="email" placeholder="E-mail">
+          
+          <input required class="input" type="password" name="password" id="password" placeholder="Password" minlength="8">
+          
+          <span class="forgot-password"><a href="#">Forgot Password?</a></span>
+          
+          
+          <a class="login-button" type="submit" value="Sign In" href="http://127.0.0.1:5001/">Register</a>
+          <a class="login-button" type="submit" value="Sign In" href="home page.html">Sign In</a>
+          
+          
+          
+         
+        </form>
+        
+        
+          
+        </div>
+      </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof window.ethereum !== 'undefined') {
+          const web3 = new Web3(window.ethereum);
+          const contractAddress = '0xdB4D88D07981A74fC8d8491845052DCb58b237F5';
+          const contractABI =[
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "password",
+          "type": "string"
+        }
+      ],
+      "name": "registerUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "password",
+          "type": "string"
+        }
+      ],
+      "name": "authenticateUser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "passwordHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+  
+          const contract = new web3.eth.Contract(contractABI, contractAddress);
+  
+          document.getElementById('registerButton').addEventListener('click', async function() {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const passwordHash = web3.utils.sha3(password);
+            await contract.methods.registerUser(username, email, passwordHash).send({ from: accounts[0] });
+            alert('User registered successfully');
+          });
+  
+          document.getElementById('loginButton').addEventListener('click', async function() {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const password = document.getElementById('password').value;
+            
+            const passwordHash = web3.utils.sha3(password);
+            const result = await contract.methods.authenticateUser(passwordHash).call({ from: accounts[0] });
+            
+            if (result) {
+              alert('Authentication successful');
+            } else {
+              alert('Authentication failed');
+            }
+          });
+        } else {
+          alert('Please install MetaMask');
+        }
+      });
+    </script>
+    </center>
+  </div>

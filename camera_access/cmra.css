@@ -1,0 +1,128 @@
+/* Dark Mode Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #e0e0e0; /* Light text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: #1e1e1e; /* Dark container background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    margin: 10px 0;
+    color: #e0e0e0; /* Light text color for file input */
+}
+
+.preview {
+    position: relative;
+}
+
+video, canvas, img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border: 1px solid #333; /* Dark border */
+    border-radius: 8px;
+}
+
+canvas {
+    display: none;
+}
+
+/* Button Styles */
+.btn {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #cecb00 0%, #ef4949 100%);
+    color: #fff;
+    font-weight: 700;
+    transition: 0.4s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.btn:active {
+    transform: scale(0.92); /* Updated for modern compatibility */
+}
+
+.btn:hover {
+    background: linear-gradient(180deg, #ef4949 0%, #cecb00 100%);
+    color: #000;
+    border: 2px dashed #cecb00;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Darker background with opacity */
+}
+
+.modal-content {
+    background-color: #2c2c2c; /* Dark modal background */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 800px;
+    border-radius: 8px;
+}
+
+.close-button, .close-upload-button, .close-filter-button {
+    color: #bbb; /* Light color for close button */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-upload-button:hover,
+.close-filter-button:hover {
+    color: #fff; /* White color on hover for better visibility */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+}
+
+/* Filter Controls */
+.filter-controls {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.filter-controls label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.filter-controls input[type="range"] {
+    width: 100%;
+}

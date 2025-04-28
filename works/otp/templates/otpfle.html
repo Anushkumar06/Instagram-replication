@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and OTP Verification</title>
+    <style>
+        body {
+            background: linear-gradient(45deg,black,gold);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgb(52, 50, 50);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+            transform: scale(1.03);
+            box-shadow: rgba(255, 215, 0, 0.6) 0px 23px 10px -20px; 
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        .input-field {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .info {
+            color: #dc3545;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .step-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if step == 1 %}
+        <!-- Step 1: Collect Voter ID, NFT Token, and Email -->
+        <h2 class="step-title">Enter Your Details</h2>
+        <form action="/" method="post">
+            <input type="text" name="username" placeholder="username" class="input-field" required><br>
+            <input type="text" name="nft_token" placeholder="password" class="input-field" required><br>
+            <input type="email" name="email" placeholder="Email" class="input-field" required><br>
+            <input type="submit" value="Send OTP" class="submit-btn">
+            <h3 class="info">{{info}}</h3>
+        </form>
+        {% elif step == 2 %}
+        <!-- Step 2: Verify OTP -->
+        <h2 class="step-title">Step 2: Verify OTP</h2>
+        <form action="/verify_otp" method="post">
+            <input type="hidden" name="original_otp" value="{{otp}}">
+            <input type="hidden" name="username" value="{{username}}">
+            <input type="hidden" name="email" value="{{email}}">
+            <input type="text" name="otp" placeholder="Enter OTP" class="input-field" required><br>
+            <input type="submit" value="Verify OTP" class="submit-btn">
+            <h3 class="info">{{info}}</h3>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

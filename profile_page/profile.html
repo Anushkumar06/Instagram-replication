@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="icon" href="logo1.png" type="image/x-icon"><!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="wrapper">
+        <div class="profile-image">
+            <div class="image">
+                <!-- Profile image is now handled by CSS background -->
+                <!-- You can also use an <img> tag if preferred -->
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="info">
+                <div class="profile-name">
+                    <h1>Dark_developers</h1>
+                </div>
+                <div class="profile-stats">
+                    <span><strong>0</strong> posts</span>
+                    <span><strong>0</strong> followers</span>
+                    <span><strong>0</strong> following</span>
+                </div>
+                <div class="profile-actions">
+                    <button class="follow-button" onclick="act()">Follow</button> <!-- Added Follow Button -->
+                    <button class="edit-button" onclick="editBio()">Edit</button>
+                    <textarea id="bio-input" class="hidden"></textarea>
+                    <button id="save-button" class="edit-button hidden" onclick="saveBio()">Save</button>
+                </div>
+                <div class="profile-bio">
+                    <p id="bio-text"></p>
+                    <p id="bio-text-2"></p>
+                    <p id="bio-text-3"></p>
+                    <p id="bio-text-4"></p>
+                    <a href="#">Website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-tab">Posts</div> <!-- Replaced navigation with Post tab -->
+    <div class="profile-gallery">
+        <img src="https://via.placeholder.com/300x300?text=Image+1" alt="Gallery Image 1">
+        <img src="https://via.placeholder.com/300x300?text=Image+2" alt="Gallery Image 2">
+        <img src="https://via.placeholder.com/300x300?text=Image+3" alt="Gallery Image 3">
+        <img src="https://via.placeholder.com/300x300?text=Image+4" alt="Gallery Image 4">
+        <img src="https://via.placeholder.com/300x300?text=Image+5" alt="Gallery Image 5">
+        <img src="https://via.placeholder.com/300x300?text=Image+6" alt="Gallery Image 6">
+        <img src="https://via.placeholder.com/300x300?text=Image+7" alt="Gallery Image 7">
+        <img src="https://via.placeholder.com/300x300?text=Image+8" alt="Gallery Image 8">
+        <img src="https://via.placeholder.com/300x300?text=Image+9" alt="Gallery Image 9">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <script>
+        // Function to edit the bio
+        function editBio() {
+            // Get the current bio text
+            const bioText = document.getElementById('bio-text').innerText;
+            const bioText2 = document.getElementById('bio-text-2').innerText;
+            const bioText3 = document.getElementById('bio-text-3').innerText;
+            const bioText4 = document.getElementById('bio-text-4').innerText;
+            
+            // Combine bio text for editing
+            const fullBio = `${bioText}\n${bioText2}\n${bioText3}\n${bioText4}`;
+            
+            // Show the textarea and hide the bio text
+            document.getElementById('bio-text').classList.add('hidden');
+            document.getElementById('bio-text-2').classList.add('hidden');
+            document.getElementById('bio-text-3').classList.add('hidden');
+            document.getElementById('bio-text-4').classList.add('hidden');
+            document.getElementById('bio-input').classList.remove('hidden');
+            document.getElementById('save-button').classList.remove('hidden');
+            document.querySelector('.edit-button').classList.add('hidden');
+
+            // Set textarea value to current bio text
+            document.getElementById('bio-input').value = fullBio;
+        }
+
+        // Function to save the edited bio
+        function saveBio() {
+            // Get the edited bio text from textarea
+            const editedBio = document.getElementById('bio-input').value;
+            
+            // Split the bio text by new lines
+            const bioLines = editedBio.split('\n');
+            
+            // Update the bio text elements
+            document.getElementById('bio-text').innerText = bioLines[0] || '';
+            document.getElementById('bio-text-2').innerText = bioLines[1] || '';
+            document.getElementById('bio-text-3').innerText = bioLines[2] || '';
+            document.getElementById('bio-text-4').innerText = bioLines[3] || '';
+
+            // Show the updated bio text and hide the textarea
+            document.getElementById('bio-text').classList.remove('hidden');
+            document.getElementById('bio-text-2').classList.remove('hidden');
+            document.getElementById('bio-text-3').classList.remove('hidden');
+            document.getElementById('bio-text-4').classList.remove('hidden');
+            document.getElementById('bio-input').classList.add('hidden');
+            document.getElementById('save-button').classList.add('hidden');
+            document.querySelector('.edit-button').classList.remove('hidden');
+        }
+
+        // Function to preview the uploaded image
+        function previewImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-pic').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

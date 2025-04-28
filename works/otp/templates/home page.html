@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_page</title>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <style>
+        
+        body {
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #0f0f0f;
+            } 
+            .navbar {
+                background-color: #242526;
+                color: white;
+                padding: 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 100;
+            }
+    
+            .navbar h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+    
+            .search-bar {
+                background-color: #3a3b3c;
+                border: none;
+                border-radius: 30px;
+                padding: 8px 15px;
+                width: 250px;
+                color: white;
+            }
+    
+            .search-bar::placeholder {
+                color: #ccc;
+            }
+    
+            
+            .feed-container {
+                margin-top: 80px;
+                display: flex;
+                justify-content: center;
+            }
+    
+            .posts {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px 10px;
+            }
+    
+            .post-card {
+                background-color: white;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+    
+            .post-header {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+            }
+    
+            .post-header img {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                margin-right: 15px;
+            }
+    
+            .post-header h2 {
+                margin: 0;
+                font-size: 18px;
+            }
+    
+            .post-img {
+                width: 100%;
+                height: auto;
+            }
+    
+            .post-footer {
+                padding: 15px;
+            }
+    
+            .post-footer .like-comment {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+            }
+    
+            .comments-section {
+                margin-top: 15px;
+                padding: 10px;
+                border-top: 1px solid #eee;
+            }
+    
+            .comments-section .comment {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+    
+            .comments-section .comment p {
+                margin: 0;
+            }
+    
+            /* Modal Styles */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 101;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .modal-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                width: 90%;
+                max-width: 400px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+            }
+    
+            .modal-header h2 {
+                margin: 0;
+                font-size: 18px;
+            }
+    
+            .modal-close {
+                background-color: transparent;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+            }
+    
+            .modal-body {
+                margin-top: 10px;
+            }
+    
+            .modal-body textarea {
+                width: 100%;
+                height: 100px;
+                border: 1px solid #ccc;
+                padding: 10px;
+                font-size: 14px;
+                border-radius: 5px;
+            }
+    
+            .modal-footer {
+                text-align: right;
+                margin-top: 10px;
+            }
+    
+            .submit-comment {
+                background-color: #4267B2;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+    
+            
+            .like-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                border: none;
+                border-radius: 50%;
+                background: linear-gradient(145deg, #ff5252, #d50000);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+                color: #fff;
+                font-family: "Arial", sans-serif;
+                cursor: pointer;
+                position: relative;
+                width: 60px;
+                height: 60px;
+                overflow: hidden;
+            }
+    
+            .like-button:before {
+                content: "\1F44D"; 
+                font-size: 30px;
+                color: #fff;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+    
+            .like-button.clicked:before {
+                color: #ffebee; 
+                animation: popUp 0.5s ease-out forwards;
+            }
+    
+            .like-button:active {
+                transform: scale(0.9); 
+            }
+    
+            @keyframes popUp {
+                0% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
+                50% {
+                    transform: translate(-50%, -50%) scale(1.5);
+                    opacity: 0.6;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
+            }
+    
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .posts {
+                    width: 90%;
+                }
+    
+                .search-bar {
+                    width: 150px;
+                }
+            }
+    
+            @media (max-width: 480px) {
+                .navbar h1 {
+                    font-size: 18px;
+                }
+    
+                .post-header h2 {
+                    font-size: 16px;
+                }
+    
+                .search-bar {
+                    width: 100px;
+                }
+            }
+        
+    
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg,black,gold);
+        }
+        .upload-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffeb3b, #fdd835);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+            color: #fff;
+            font-family: "Arial", sans-serif;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .upload-button:before {
+            content: "\002B"; 
+        }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 101;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .comment-modal {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-modal .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.comment-modal .modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.comment-modal .modal-close {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.comment-modal .modal-body {
+    margin-top: 10px;
+}
+
+.comment-modal textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.comment-modal .modal-footer {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.comment-modal .submit-button {
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-close {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            margin-top: 10px;
+        }
+
+        .upload-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .text-upload, .image-upload {
+            display: none;
+        }
+        .chat-btn{
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .text-upload textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .image-upload input[type="file"] {
+            width: 100%;
+        }
+
+        .modal-footer {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .submit-button {
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="navbar">
+        <h1>Picstream</h1>
+        <input type="text" class="search-bar" placeholder="Search">
+    </div>
+
+    
+    <div class="feed-container">
+        <div class="posts">
+           
+            <div class="post-card" data-post-id="1">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/50" alt="Profile">
+                    <h2>Dark developers</h2>
+                </div>
+                <img src="Deadpool.jpg" alt="Post Image 1" class="post-img">
+                <div class="post-footer">
+                    <p>The Beginning of a New Chapter! 🔥</p>
+                    <div class="like-comment">
+                        <button class="like-button"></button>
+                        <button class="comment-button">💬 Comment</button>
+                    </div>
+                    
+                    <div class="comments-section" data-comments-id="1">
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="post-card" data-post-id="2">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/50" alt="Profile">
+                    <h2>User Name 2</h2>
+                </div>
+                <img src="https://via.placeholder.com/600x400" alt="Post Image 2" class="post-img">
+                <div class="post-footer">
+                    <p>Exploring the Mountains! 🌄</p>
+                    <div class="like-comment">
+                        <button class="like-button"></button>
+                        <button class="comment-button">💬 Comment</button>
+                    </div>
+                    
+                    <div class="comments-section" data-comments-id="2">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Comment Modal -->
+    <div class="comment-modal" id="commentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add a Comment</h2>
+            <button class="modal-close" id="closeCommentModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <textarea id="commentText" placeholder="Write a comment..."></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="submit-button" id="submitComment">Comment</button>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.add('clicked');
+                setTimeout(() => {
+                    button.classList.remove('clicked');
+                }, 2000); 
+            });
+        });
+    </script>
+
+    
+
+    
+    <button class="upload-button" id="openModal"></button>
+
+    
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Panel</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-options">
+                    <button class="prof-btn"><a href="profile.html">View profile</a></button>
+                    <button class="option-button" id="textOption">Text post</button>
+                    <button> <a class="login-button" type="submit" value="Sign In" href="./cmra.html">Upload Image</a></button>
+                    <button class="chat-btn"><a href="chat.html">chat</a></button>
+                    
+                </div>
+                <div class="text-upload" id="textUpload">
+                    <textarea id="postText" placeholder="Write something..."></textarea>
+                </div>
+                <div class="image-upload" id="imageUpload">
+                    
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="submit-button" id="submitPost">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        document.getElementById('openModal').addEventListener('click', () => {
+            document.getElementById('uploadModal').style.display = 'flex';
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('uploadModal').style.display = 'none';
+        });
+
+        document.getElementById('textOption').addEventListener('click', () => {
+            document.getElementById('textUpload').style.display = 'block';
+            document.getElementById('imageUpload').style.display = 'none';
+        });
+
+        document.getElementById('imageOption').addEventListener('click', () => {
+            document.getElementById('textUpload').style.display = 'none';
+            document.getElementById('imageUpload').style.display = 'block';
+        });
+
+        document.getElementById('submitPost').addEventListener('click', () => {
+            const postText = document.getElementById('postText').value;
+            const postImage = document.getElementById('postImage').files[0];
+
+            
+            console.log('Post Text:', postText);
+            console.log('Post Image:', postImage);
+
+            
+            document.getElementById('uploadModal').style.display = 'none';
+
+            
+            document.getElementById('postText').value = '';
+            document.getElementById('postImage').value = '';
+        });
+        
+    </script>
+</body>
+</html>

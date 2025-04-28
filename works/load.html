@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Spinner</title>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333; 
+            color: #fff; 
+            font-family: Arial, sans-serif;
+        }
+        .spinner {
+            border: 10px solid #555; 
+            border-top: 10px solid #ffd700; 
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px; /* Space between spinner and text */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner"></div>
+    <div class="loading-text">Loading...</div>
+    <script>
+        function redirectAfterDelay() {
+            setTimeout(function() {
+                window.location.href = "./login page.html"; 
+            }, 2000);
+        }
+
+        window.onload = redirectAfterDelay;
+    </script>
+</body>
+</html>

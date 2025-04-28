@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            background: linear-gradient(45deg,gold,black); 
+        }
+        .picstream {
+            width: 500px;
+        }
+        .logo {
+            width: 300px;
+        }
+    </style>
+    <script>
+        
+        function redirectAfterDelay() {
+            
+            let redirectCount = parseInt(sessionStorage.getItem('redirectCount')) || 0;
+
+            if (redirectCount < 3) {
+                
+                redirectCount++;
+                sessionStorage.setItem('redirectCount', redirectCount);
+
+                
+                setTimeout(function() {
+                    window.location.href = "./load.html"; L
+                }, 2000); 
+            } else {
+                
+                sessionStorage.removeItem('redirectCount');
+            }
+        }
+
+        
+        window.onload = redirectAfterDelay;
+    </script>
+</head>
+<body>
+    <img src="picstream.png" class="picstream" alt="Picstream">
+    <br>
+    <img src="logo.png" class="logo" alt="Logo">
+    <h4>© Copyrights Reserved</h4>
+</body>
+</html>

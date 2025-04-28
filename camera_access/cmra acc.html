@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+        }
+        .success-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Slightly lighter background for the container */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .success-container h1 {
+            font-size: 24px;
+            color: #4CAF50; /* Success green color */
+        }
+        .success-container p {
+            font-size: 18px;
+            color: #e0e0e0; /* Light text color */
+        }
+        .success-container .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50; /* Success green color */
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .success-container .btn:hover {
+            background-color: #45a049; /* Darker green for hover effect */
+        }
+
+        /* Custom Checkbox Styles */
+        .container {
+            display: block;
+            height: 2em;
+            width: 2em;
+            cursor: pointer;
+            position: relative;
+            margin: 0 auto;
+        }
+        .container input {
+            position: absolute;
+            transform: scale(0);
+        }
+        .container input:checked ~ .checkmark {
+            transform: rotate(45deg);
+            height: 1.5em;
+            width: .7em;
+            border-color: #32cd32;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-radius: 0;
+        }
+        .container .checkmark {
+            display: block;
+            width: inherit;
+            height: inherit;
+            border: 2px solid #32cd32;
+            border-radius: 4px;
+            transition: all .3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h1>Image Uploaded Successfully!</h1>
+        <!-- Custom checkbox to represent success -->
+        <label class="container">
+            <input checked="checked" type="checkbox">
+            <div class="checkmark"></div>
+        </label>
+        <a href="index.html" class="btn">Return to Home</a>
+    </div>
+</body>
+</html>

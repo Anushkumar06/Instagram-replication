@@ -1,0 +1,153 @@
+/* Apply base styles */
+* {
+    font-family: 'Segoe UI Light', sans-serif;
+    font-size: x-large;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Body Styling */
+body {
+    background-color: #121212; /* Dark background color */
+    color: #e0e0e0; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Wrapper for Profile */
+.wrapper {
+    display: flex;
+    border-radius: 7px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px 40px 2px rgba(0, 0, 0, 0.2);
+    margin: 1.5em 3em;
+    max-width: 800px; /* Limit width for better alignment */
+    background-color: #1e1e1e; /* Dark background for profile */
+    padding: 20px;
+}
+
+/* Profile Image Styling */
+.profile-image {
+    flex: 1;
+    padding: 1.5em 0;
+}
+
+.image {
+    height: 200px;
+    width: 200px;
+    background: url('https://via.placeholder.com/200') no-repeat center center; /* Placeholder image */
+    background-size: cover;
+    border-radius: 50%;
+    margin: 0 auto; /* Center the profile image */
+}
+
+/* Profile Info Styling */
+.profile-info {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile Follow Stats and Info */
+.follow {
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.info {
+    flex: 8;
+    text-align: center;
+}
+
+/* Profile Stats Styling */
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Buttons Styling */
+button {
+    background: blue;
+    border: none;
+    padding: 5px 10px;
+    color: whitesmoke;
+    width: 120px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+}
+
+button:active {
+    outline: none;
+}
+
+button:visited {
+    outline: none;
+}
+
+.unfollow {
+    background: red;
+    color: white;
+}
+
+.follow-button {
+    background: green; /* Color for the Follow button */
+}
+
+/* Additional Styling for Profile Sections */
+.profile-name, .profile-stats, .profile-actions, .profile-bio {
+    margin-bottom: 20px; /* Space between sections */
+}
+
+.profile-name h1 {
+    font-size: 24px;
+    color: #e0e0e0; /* Light text color */
+}
+
+.profile-bio a {
+    color: #4caf50; /* Green color for links */
+    text-decoration: none;
+}
+
+/* Hide elements initially */
+.hidden {
+    display: none;
+}
+
+/* Gallery Styling */
+.profile-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+}
+
+.profile-gallery img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Tab Styling */
+.post-tab {
+    background-color: #1e1e1e; /* Dark background for tab */
+    border-top: 1px solid #333;
+    padding: 10px 0;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+.follow-button:active{
+    background-color: white;
+}
